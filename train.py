@@ -13,8 +13,8 @@ import os
 def get_args():
     parser = argparse.ArgumentParser(description='Hair Segmentation')
     parser.add_argument('--data_dir', default='./data/')
-    parser.add_argument('--batch_size', type=int, default=4)
-    parser.add_argument('--epochs', default=5, type=int)
+    parser.add_argument('--batch_size', type=int, default=16)
+    parser.add_argument('--epochs', default=10, type=int)
     parser.add_argument('--lr', default=0.0001, type=float)
     parser.add_argument('--img_size', type=int, default=256)
     parser.add_argument('--use_pretrained', type=bool, default=False)
@@ -35,7 +35,7 @@ if __name__ == '__main__':
                          zoom_range=0.05,
                          horizontal_flip=True,
                          fill_mode='nearest')
-    
+
     myGene = trainGenerator(args.batch_size, args.data_dir, 'images', 'masks', data_gen_args, save_to_dir=None)
 
     size_data = len(os.listdir(f"{args.data_dir}/images"))
