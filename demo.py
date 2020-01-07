@@ -1,6 +1,7 @@
 import glob
 import time
 
+
 import cv2
 import keras
 import numpy as np
@@ -12,9 +13,9 @@ def predict(image, height=224, width=224):
     im = im / 255
     im = cv2.resize(im, (height, width))
     im = im.reshape((1,) + im.shape)
-    
+
     pred = model.predict(im)
-    
+
     mask = pred.reshape((224, 224))
 
     return mask
@@ -51,5 +52,5 @@ if __name__ == '__main__':
         dst = transfer(img, mask)
 
         print("segment: %f, color:%f" % (d1 - st, time.time() - d1))
-        
+
         cv2.imwrite(name.replace('images', 'outs'), dst)
